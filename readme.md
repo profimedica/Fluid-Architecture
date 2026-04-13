@@ -34,4 +34,5 @@ While the architecture inventory grows, adding tags will help you flip scopes an
 # Quick start
 
 If you need a custom port number:
-dotnet run -- -port=49002
+
+    dotnet run -- -port=49002
