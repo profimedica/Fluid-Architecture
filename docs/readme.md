@@ -1,0 +1,1 @@
+This folder is a snapshoot of the Fluid-Architecture/wwwroot folder, only used for GitHub pages.

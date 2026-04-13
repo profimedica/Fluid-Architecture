@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script src="./lib/vue/vue.js"></script>
+    <script src="./sample/stock-app.js"></script>
+    <script type="module" src="./app.js"></script>
+    
+    <title>Fluid Architecture</title>
+</head>
+<body>
+    <div id="app">
+        <div class="page-title">Fluid Architecture</div>
+        <div>POC -  Showcase dynamic generation of C4 diagrams for selected tags.</div>
+        
+        Go to GitHub <a href="https://github.com/profimedica/Fluid-Architecture/blob/master/readme.md">readme.md</a>
+        <hr>
+
+        <span v-for="tag in selectedTags" class="tag highlighted" @click="tagClicked(tag)">{{tag}}</span>
+        
+        <table style="width: 100%">
+            <tr>
+                <td style="vertical-align: top; max-width: 50%;">
+                    <span><span class="title" @click="show.contextLevelMermaid = !show.contextLevelMermaid">Context diagram</span> <span class="right tag" @click="renderMermaid()">Refresh</span></div>
+                    <pre v-if="show.contextLevelMermaid" class="code">{{c4.codeLevelDiagram}}</pre>
+                    <div ref="contextDiagram" class="mermaid panel" v-if="show.contextDiagram" v-html="c4.contextDiagram">Missing context diagram</div>
+                    <div><span class="title" @click="show.containerLevelMermaid = !show.containerLevelMermaid">Container diagram</span> <span class="right tag" @click="renderMermaid()">Refresh</span></div>
+                    <pre v-if="show.containerLevelMermaid" class="code">{{c4.codeLevelDiagram}}</pre>
+                    <div ref="containerDiagram" class="mermaid panel" v-if="show.containerDiagram" v-html="c4.containerDiagram">Missing container diagram</div>
+                    <div><span class="title" @click="show.componentLevelMermaid = !show.componentLevelMermaid">Component diagram</span> <span class="right tag" @click="renderMermaid()">Refresh</span></div>
+                    <pre v-if="show.componentLevelMermaid" class="code">{{c4.codeLevelDiagram}}</pre>
+                    <div ref="componentDiagram" class="mermaid panel" v-if="show.componentDiagram" v-html="c4.componentDiagram">Missing component diagram</div>
+                    <div><span class="title" @click="show.codeLevelMermaid = !show.codeLevelMermaid">Code level diagram</span> <span class="right tag" @click="renderMermaid()">Refresh</span></div>
+                    <pre v-if="show.codeLevelMermaid" class="code">{{c4.codeLevelDiagram}}</pre>
+                    <div ref="codeLevelDiagram" class="mermaid panel" v-if="show.codeLevelDiagram" v-html="c4.codeLevelDiagram">Missing code level diagram</div>
+                </td>
+                <td style="vertical-align: top; max-width: 50%;">
+                    <div class="title">Architecture resources</div>
+                    <div class="highlighted tag">
+                        Use tags to de-clutter the diagrams and focus on your curent flow.
+                    </div>
+                    <div v-if="diagramMeta" class="panel">
+                        <div v-for="resource in diagramMeta.resources" class="resource">
+                            <span class="type">
+                                {{resource.baseType}}
+                                <b>{{resource.type}}</b>
+                            </span>
+                                <span class="name">{{resource.name}}</span>
+                                <span v-if="resource.tags">
+                                <span v-for="tag in resource.tags" class="tag" :class="selectedTags.indexOf(tag) >= 0 ? 'highlighted':''" @click="tagClicked(tag)">{{tag}}</span>
+                            </span>
+                            <div class="description">{{resource.description}}</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        
+    </div>
+</body>
+
+<style>
+    .right{
+        float: right;
+    }
+    .page-title {
+        font-size: xx-large;
+    }
+    .panel {
+        border: 1px solid gray;
+        border-radius: 5px;
+        background-color: #dfe;
+        margin: 3px;
+        padding: 3px;
+    }
+    .title{
+        font-weight: bold;
+        font-size: large;
+        padding: 0px 5px;
+        margin: 2px 5px 2px 0px;
+    }
+    .resource {
+        border: 1px solid gray;
+        border-radius: 5px;
+        background-color: #ffe;
+        margin: 3px;
+        padding: 3px;
+    }
+    .resource .type {
+        border: 1px solid gray;
+        border-radius: 3px;
+        color: blue;
+        padding: 0px 5px;
+        margin: 2px 5px 2px 0px;
+    }
+    .resource .description {
+        color: gray;
+    }
+    .resource .name {
+        font-weight: bold;
+    }
+    .resource .tag:hover {
+        background-color: #dfd;
+    }
+    .tag {
+        border: 1px solid gray;
+        border-radius: 3px;
+        padding: 0px 5px;
+        margin: 2px 5px 2px 0px;
+    }
+    
+    .highlighted {
+        background-color: yellow;
+    }
+</style>
+</html>
