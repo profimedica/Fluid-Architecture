@@ -2,6 +2,10 @@
 
 A set of tools to allow architecture transitions.
 
+POC - not a complete implementation
+
+Showcase dynamic generation of C4 diagrams for selected tags.
+
 ## Why another architecture tools set?
 
 Most of the time architecture consists of a set of document and diagrams that often run out of sync. Mental gymnastics to understand diagrams makes them a bottleneck in development. They often need interpretation or are disconnected from the state of resources.
@@ -12,6 +16,9 @@ Architecture should be technology agnostic, driven by metrics and should adapt t
 With emerging computation power and broader range of integration options, software development as we know today is no longer cost efficient.
 We have to leave behind the habbit of relying on architects to produce diagrams is like relying on someone to read the newspaper for you (see how itinerant news readers where reading the newspaper to illiterate commmunities).
 This doesen't mean that software develpers or architects are no longer needed, but we need to fight the increasing overlap in responsabilities and allow the propagation of new develpment paradigms.
+
+![Screenshot](Screenshot.png)
+
 
 ### How it works?
 
