@@ -1,0 +1,7 @@
+secret
+workspace
+.idea
+*.user
+Fluid-Architecture/bin/
+Fluid-Architecture/obj/
+
